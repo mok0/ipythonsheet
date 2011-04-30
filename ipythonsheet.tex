@@ -1,3 +1,49 @@
+% Cheat sheet for IPython. Based on latexsheet by Winston Chang [0] and
+% Doug Tillmans notes [1] from Jeff Rush's ShowMeDo tutorials [2].
+%
+% [0] <http://www.stdout.org/~winston/latex/>
+% [1] <http://www.dugthawts.com/?p=284>
+% [2] <http://showmedo.com/videotutorials/video?name=1000010&fromSeriesID=100>
+%
+% Copyright: 2009, 2011 Morten Kjeldgaard <mok@bioxray.dk>
+% License: CC-BY-SA 3.0, see: <http://creativecommons.org/licenses/by-sa/3.0/>
+
+
+% Magicks TODO:
+%
+%Exit 
+%Pprint 
+%Quit 
+%autocall 
+%autoindent 
+%automagic 
+%clear 
+%color_info 
+%colors 
+%debug
+%doctest_mode 
+%ed 
+%env 
+%exit 
+%paste 
+%pdb 
+%profile 
+%prun
+% %quickref 
+%quit 
+%r 
+%rehash 
+%rehashx
+%rep 
+%save 
+%system_verbose 
+%time
+%upgrade 
+%who_ls 
+%xmode
+
+% -----------------------------------------------------------------------
+
 \documentclass[10pt,landscape]{article}
 \usepackage{multicol}
 \usepackage{calc}
@@ -13,26 +59,10 @@
 %  dvips -P pdf  -t landscape ipythonsheet.dvi
 %  ps2pdf ipythonsheet.ps
 
-% 2009-12-22
-% Cheat sheet for ipython. Based on latexsheet by
-
-% 2008-04
-% Changed page margin code to use the geometry package. Also added code for
-% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
-% for the suggestions.
-
-% 2006-08
-% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
-
-
-% To Do:
-% \listoffigures \listoftables
-% \setcounter{secnumdepth}{0}
-
-
 % This sets page margins to .5 inch if using letter paper, and to 1cm
 % if using A4 paper. (This probably isn't strictly necessary.)
 % If using another size paper, use default 1cm margins.
+
 \ifthenelse{\lengthtest { \paperwidth = 11in}}
 	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
 	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
@@ -89,247 +119,254 @@
      \Large{\textbf{IPython\ Cheat\ Sheet}} \\
 \end{center}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section {Magic Commands}
+
+If automagick is enabled, the \% sign in front of magick commands is
+optional.
+
 \subsection{Python variables}
 
 \newlength{\MyLen}
-\settowidth{\MyLen}{xxxxxxxxxxxx}
 
-
+\settowidth{\MyLen}{1234567890123456}
 \begin{tabular}{@{}p{\MyLen}%
                @{}p{\linewidth-\MyLen}@{}}
-
-  \verb!who!    & Bring up a list of known variables. \\
-  \verb!who int!  & Show int variables in namespace. \\
-  \verb!whos! & Show all variables, their types and values. \\
-  \verb!psearch! \textit{var*}  & List variables matching ``var*''. \\
-  \verb!psearch! \textit{var* int}  & List variables matching ``var*'' of type int. \\
-  \verb!store! \textit{var} & Store variable. \\
-  \verb!store! \textit{var $>$ file}  & Save variable to a file. \\
-  \verb!store!  & Show all stored variables. \\
-  \verb!store -r!  & Recover stored variables to memory. \\
-  \verb!store -z!  & Zap stored variables.\\
-  \verb!reset!  & Delete all variables in the ipython session.
-
+  \verb!%who!    & Bring up a list of known variables. \\
+  \verb!%who int!  & Show int variables in namespace. \\
+  \verb!%whos! & Show all variables, their types and values. \\
+  \verb!%psearch! \textit{var*}  & List variables matching ``var*''. \\
+  \verb!%psearch! \textit{var* int}  & List variables matching ``var*'' of type int. \\
+  \verb!%store! \textit{var} & Store variable. \\
+  \verb!%store! \textit{var $>$ file}  & Save variable to a file. \\
+  \verb!%store!  & Show all stored variables. \\
+  \verb!%store -r!  & Recover stored variables to memory. \\
+  \verb!%store -z!  & Zap stored variables.\\
+  \verb!%reset!  & Delete all variables in the IPython session. \\
 \end{tabular}
-Variables stored are persistent and can be recovered in the next ipython session.
 
+Variables stored are persistent and can be recovered in the next IPython session.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Logging}
-%\newlength{\MyLen}
-\settowidth{\MyLen}{xxxxxxxxxxxx}
-
+\settowidth{\MyLen}{123456789012}
 \begin{tabular}{@{}p{\the\MyLen}%
                @{}p{\linewidth-\the\MyLen}@{}}
-  \verb!logon!  & Start logging. \\
-  \verb!logoff!  & Stop logging. \\
-  \verb!logstart!  & Start logging of session. \\
-  \verb!logstate!  & Report status of logging.\\
-  \verb!runlog!  & Reexecute log file.\\
-
+  \verb!%logstart!  & Start logging of session. \\
+  \verb!%logoff!  & Pause logging. \\
+  \verb!%logon!  & Restart logging after pause. \\
+  \verb!%logstop!  & Stop logging and close logfile.\\
+  \verb!%logstate!  & Report status of logging.\\
+  \verb!%runlog!  & Re-execute log file.\\
 \end{tabular}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Aliases}
-
 \begin{tabular}{@{}ll@{}}
-  \verb!alias!  & Display defined aliases. \\
-  \verb!unalias!  & Remove alias. \\
-  \verb!alias! \textit{pr echo You said: \%s}  & pr Hello.
+  \verb!%alias!  & List defined aliases. \\
+  \verb!%unalias!  & Remove alias. \\
+%%%  \verb!%alias! \textit{pr echo You said: \%s}  & pr Hello.
 \end{tabular}
 
-\subsection{Magic commands}
-\settowidth{\MyLen}{\texttt{multicol} }
+Built-in aliases: cat, clear, less, mkdir, rmdir, cp, ls, mv, rm.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{About magic commands}
+
+
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-  \verb!lsmagic!  & List all magic commands. \\             
-  \verb!magic!  & Scrolling help of magic commands. \\ 
-  \verb!lsmagic?!  & Summary information about object. \\             
-  \verb!lsmagic??!  & Detailed information about object. \\             
-  \verb!var?!  & Show python docs of this variable. \\             
-
+  \verb!%lsmagic!  & List all magic commands. \\             
+  \verb!%magic!  & Scrolling help of magic commands. \\ 
+  \verb!%lsmagic?!  & Summary information about object. \\             
+  \verb!%lsmagic??!  & Detailed information about object. \\             
+  \verb!var?!  & Show Python docs of this variable. \\             
 \end{tabular}
-Magic commands have a \% sign in front or not. If you have a variable
-of the same name as a magic command there is a difference. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Shorthands}
-\settowidth{\MyLen}{\texttt{multicol} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-  \verb!p!  & Short for print. \\             
-  \verb!page!  & Print the object through pretty-printer. \\             
+  \verb!%p!  & Short for print. \\             
+  \verb!%page!  & Print the object through pretty-printer. \\             
   \verb!f 4, 5!  & Call function \texttt{f(4,5)}. \\             
   \verb!,f 4, 5!  & Call function \texttt{f(``4'', ``5'')}. \\             
   \verb!/f!  & Callable: call function \texttt{f()}. \\             
-
-
 \end{tabular}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Help subsystem}
 
-IPython integras with the pydocs system.
+IPython integrates with the pydocs system. Parentheses can be omitted.
 
-\settowidth{\MyLen}{\texttt{multicol} }
+\settowidth{\MyLen}{1234567890123456}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-
    \verb!help(sys)! & Display help on the sys module. \\
    \verb!help('for')! & Display help on keyword. \\
-   \verb!help('FOR')! & Caps shows you the topic. \\
-   \verb!help()! & Interactive help subsystem.
-              
+   \verb!help('LISTS')! & Caps shows you the topic. \\
+   \verb!help()! & Interactive help subsystem.\\
 \end{tabular}
 
-%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Introspection}
 
-\settowidth{\MyLen}{\texttt{multicol} }
+\settowidth{\MyLen}{123456789012345678}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-
-  \verb!pdef re.match! &  Inspect definition of function.\\
-  \verb!pdoc re.match! & Display \verb!__doc__! string.\\
-  \verb!pinfo!  & Display pdef and pdoc. \\
-  \verb!psource re.match! & Display source code. \\
+  \verb!%pdef re.match! &  Inspect definition of function.\\
+  \verb!%pdoc re.match! & Display \verb!__doc__! string.\\
+  \verb!%pinfo!  & Display pdef and pdoc. \\
+  \verb!%psource re.match! & Display source code. \\
   \verb!re.match??!  & Same as pinfo.\\
   \verb!re.match?! & pdef and more.\\
-  \verb!pfile re.match! &  Display source file containing function.\\
-  \verb!edit -x re.match! & Opens source file in preferred editor.\\
-              
+  \verb!%pfile re.match! &  Display source file containing function.\\
+  \verb!%edit -x os.path! & Opens source file in preferred editor.\\
 \end{tabular}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Directory Navigation}
 
-\settowidth{\MyLen}{\texttt{multicol} }
+\settowidth{\MyLen}{12345678901234567890}
+
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-
-  \verb!pwd! &  Print working directory.\\
-  \verb!pushd! \textit{path} &  Push \textit{path} on stack and cd to it. \\
-  \verb!dirs! & List directories on the stack. \\
-  \verb!cd dirs[1]! & Switch to second directory on the stack. \\
-  \verb!popd! & Pop top directory off the the stack and cd to it.\\
-  \verb!bookmark! \textit{name} & Bookmark CWD \\
-  \verb!bookmark! \textit{name path}  & Bookmark path. \\
-  \verb!bookmark -l!  & List bookmarks. \\
-  \verb!dhist! & Display the history of directories visited. \\
-  \verb!cd! \textit{bookmark}  & cd to the bookmark. \\
-  \verb!cd -!\textit{number} & cd to the numbered directory.
-
+  \verb!%pwd! &  Print working directory.\\
+  \verb!%pushd! \textit{path} & Push \textit{path} on stack and cd to it. \\
+  \verb!%dirs! & List directories on the stack. \\
+  \verb!%cd dirs[1]! & Switch to second directory on the stack. \\
+  \verb!%popd! & Pop top directory off stack and cd to it.\\
+  \verb!%bookmark! \textit{name} & Bookmark CWD \\
+  \verb!%bookmark! \textit{name path}  & Bookmark path. \\
+  \verb!%bookmark -l!  & List bookmarks. \\
+  \verb!%dhist! & Display the history of directories visited. \\
+  \verb!%cd! \textit{bookmark}  & cd to the bookmark. \\
+  \verb!%cd -!\textit{number} & cd to the numbered directory. \\
 \end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Shell commands}
 
-\settowidth{\MyLen}{\texttt{multicol} }
+\settowidth{\MyLen}{1234567890123456789}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
 
-  \verb/!ls/ & Run the \texttt{ls} command.\\
+  \verb/!ls/ & Run the system \texttt{ls} command.\\
   \verb/!ls -l/ & Run the \texttt{ls -l} command.\\
   \verb/patt = "*.py"/ & Store a pattern in a Python variable.\\
-  \verb/!ls -l \$patt/ & Use python variable in the shell.\\
-  \verb/!ls -l \${patt+'c'}/ & Use python expressions in the shell.\\
+  \verb/!ls -l $patt/ & Use Python variable in the shell.\\
+  \verb/!ls -l ${patt+'c'}/ & Use Python expressions in the shell.\\
   \verb/x = !ls/ & Store output of shell command in a list.\\
   \verb/x.s/ & Show list as a string.\\
   \verb/x.n/ & Show list as string with newlines.\\
   \verb/x = !ls *.py | sort/ & Use pipes in the shell.\\
-
+  \verb/%sx / & Run a shell command and capture its output in a dict.\\
 \end{tabular}
+
+Example: \verb/a = %sx find . -name "*.py"/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Running Python programs}
 
 Running a program leaves the variables in the local namespace.
 
-\settowidth{\MyLen}{\texttt{multicol} }
+\settowidth{\MyLen}{1234567890123456}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+  \verb/%run/ \textit{prog} & Start script with main method.\\
+  \verb/%run -p/ \textit{prog} & Profile program.\\
+  \verb/%run -d/ \textit{prog} & starts up the calc program with the debugger.\\
+  \verb/%run?/ & List options of \texttt{run}.\\
+  \verb/%pycat/ \textit{file} & Pretty print \texttt{file.py}.\\
+  \verb/%timeit/ \textit{expr}&  Time execution of Python expression.\\
+  \verb/%bg/ & Run a job in the background \\
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Viewing and editing source}
+
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
 
-\verb/run/ \textit{prog} & Start script with main method.\\
-\verb/run -p/ \textit{prog} & Profile program.\\
-\verb/run -d/ \textit{prog} & starts up the calc program with the debugger.\\
-\verb/run?/ & List options of \texttt{run}.\\
-\verb/pycat file/ & Pretty print \texttt{file.py}.\\
-
+  \verb/%edit def.py/ & Edit and execute file def.py.\\
+  \verb/%edit 1-4 6 / & Edit and execute lines 1--4 and 6.\\
+  \verb/%save apple 1-3/ & Save lines 1--3 of history to file apple.py.\\
+  \verb/%psource xyz/ & Print source of object xyz.\\
+  \verb/%cpaste/ & Paste in source from outside source.\\
 \end{tabular}
 
-\section{iPython history caching}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Ctrl-P, Ctrl-N, tab completion, etc. Arrow keys.
+\section{History caching}
 
-\settowidth{\MyLen}{\texttt{multicol} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
 
-
-\verb/\_i/ &  Show last command.\\
-\verb/\_ii/ & Shows two commands back.\\
-\verb/\_i3/ & Show command number 3 entered.\\
-\verb/In[3]/ & global variable that shows third command.\\
-\verb/history/ or \verb/hist/ & Show last 20 commands entered.\\
-\verb/hist 1 10/ & Show commands 1--10.\\
-\verb/hist -r/ & Hide magic wrapper commands.\\
-\verb/hist -r 10/ & Show last 10 commands.\\
-\verb/exec _i3/ & Execute command number 3.\\
-\verb/exec In[1:4]/ & Execute commands 1 to 3.\\
-\verb/macro/ \textit{name} \textit{range} & Define history macro.\\
-\verb/macro begin 1-4 5/ & Define history named ``begin''.\\
-\verb/begin/ & Execute macro ``begin''.\\
-\verb/store begin/ & Store macro ``begin''.\\
-
+  \verb/_i/ &  Show last command.\\
+  \verb/_ii/ & Shows two commands back.\\
+  \verb/_iii/ & Shows three commands back.\\
+  \verb/_i3/ & Show command number 3 entered.\\
+  \verb/In[3]/ & global variable showing third command.\\
+  \verb/%hist/ & Show last 20 commands entered.\\
+  \verb/%hist 1 10/ & Show commands 1--10.\\
+  \verb/%hist -r/ & Hide magic wrapper commands.\\
+  \verb/%hist -r 10/ & Show last 10 commands.\\
 \end{tabular}
-
-
-\section{Viewing and editing source}
-
-
-\settowidth{\MyLen}{\texttt{multicol} }
+\settowidth{\MyLen}{12345678901234567890}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-
-\verb/edit def.py/ & Edit and execute file def.py.\\
-\verb/edit 1-4 6 / & Edit and execute lines 1--4 and 6.\\
-\verb/save apple 1-3/ & Save lines 1--3 of history to file apple.py.\\
-\verb/psource xyz/ & Print source of object xyz.\\
-
-\verb/cpaste/ & Paste in source from outside source.\\
-
+  \verb/%macro/ \textit{name} \textit{range} & Define history macro.\\
+  \verb/%macro begin 1-4 5/ & Define history named ``begin''.\\
+  \verb/begin/ & Execute macro ``begin''.\\
+  \verb/%store begin/ & Store macro ``begin''.\\
 \end{tabular}
+
+For example, execute command number 3: \verb/exec _i3/ \\
+Execute commands 1 to 3: \verb/exec In[1:4]/.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Output caching}
 
-Out is global dictionary for the output of iPython commands.
+\verb/Out/ is a global dictionary for the output of IPython commands.
 
-\settowidth{\MyLen}{\texttt{multicol} }
+\settowidth{\MyLen}{123456789012}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
 
-\verb/Out.keys()/ & Command numbers with assocated output.\\
-
-\verb/Out[130]/ & Display output of the command 130.\\
+  \verb/Out.keys()/ & Command numbers with assocated output.\\
+  \verb/Out[130]/ & Display output of the command 130.\\
 
 \end{tabular}
 
-
-
-
-
-              
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 
 
 
+% -----------------------------------------------------------------------
 
 \rule{0.3\linewidth}{0.25pt}
 \scriptsize
 
-Copyright \copyright\ 2009 Morten Kjeldgaard.
+Copyright \copyright\ 2011 Morten Kjeldgaard \verb!<mok@bioxray.dk>!
 
 \end{multicols}
 \end{document}
