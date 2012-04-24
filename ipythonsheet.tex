@@ -130,14 +130,14 @@ optional.
 
 \newlength{\MyLen}
 
-\settowidth{\MyLen}{1234567890123456}
+\settowidth{\MyLen}{123456789012345678}
 \begin{tabular}{@{}p{\MyLen}%
                @{}p{\linewidth-\MyLen}@{}}
   \verb!%who!    & Bring up a list of known variables. \\
   \verb!%who int!  & Show int variables in namespace. \\
   \verb!%whos! & Show all variables, their types and values. \\
   \verb!%psearch! \textit{var*}  & List variables matching ``var*''. \\
-  \verb!%psearch! \textit{var* int}  & List variables matching ``var*'' of type int. \\
+  \verb!%psearch! \textit{var*} \verb!int!  & List variables matching ``var*'' of type int. \\
   \verb!%store! \textit{var} & Store variable. \\
   \verb!%store! \textit{var $>$ file}  & Save variable to a file. \\
   \verb!%store!  & Show all stored variables. \\
@@ -151,10 +151,10 @@ Variables stored are persistent and can be recovered in the next IPython session
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Logging}
-\settowidth{\MyLen}{123456789012}
 \begin{tabular}{@{}p{\the\MyLen}%
                @{}p{\linewidth-\the\MyLen}@{}}
   \verb!%logstart!  & Start logging of session. \\
+  \verb!%logstart! \textit{filename}  & Start logging to named file. \\
   \verb!%logoff!  & Pause logging. \\
   \verb!%logon!  & Restart logging after pause. \\
   \verb!%logstop!  & Stop logging and close logfile.\\
@@ -165,7 +165,8 @@ Variables stored are persistent and can be recovered in the next IPython session
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Aliases}
-\begin{tabular}{@{}ll@{}}
+\begin{tabular}{@{}p{\the\MyLen}%
+               @{}p{\linewidth-\the\MyLen}@{}}
   \verb!%alias!  & List defined aliases. \\
   \verb!%unalias!  & Remove alias. \\
 %%%  \verb!%alias! \textit{pr echo You said: \%s}  & pr Hello.
@@ -208,7 +209,7 @@ Built-in aliases: cat, clear, less, mkdir, rmdir, cp, ls, mv, rm.
 
 IPython integrates with the pydocs system. Parentheses can be omitted.
 
-\settowidth{\MyLen}{1234567890123456}
+%%\settowidth{\MyLen}{1234567890123456}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
    \verb!help(sys)! & Display help on the sys module. \\
@@ -221,7 +222,7 @@ IPython integrates with the pydocs system. Parentheses can be omitted.
 
 \subsection{Introspection}
 
-\settowidth{\MyLen}{123456789012345678}
+%\settowidth{\MyLen}{123456789012345678}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
   \verb!%pdef re.match! &  Inspect definition of function.\\
@@ -240,30 +241,27 @@ IPython integrates with the pydocs system. Parentheses can be omitted.
 \subsection{Directory Navigation}
 
 \settowidth{\MyLen}{12345678901234567890}
-
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
   \verb!%pwd! &  Print working directory.\\
-  \verb!%pushd! \textit{path} & Push \textit{path} on stack and cd to it. \\
-  \verb!%dirs! & List directories on the stack. \\
-  \verb!%cd dirs[1]! & Switch to second directory on the stack. \\
+  \verb!%pushd! \textit{path} & Push \textit{path} on stack and cd to it.\\
+  \verb!%dirs! & List directories on the stack.\\
+  \verb!%cd dirs[1]! & Switch to second directory on the stack.\\
   \verb!%popd! & Pop top directory off stack and cd to it.\\
-  \verb!%bookmark! \textit{name} & Bookmark CWD \\
-  \verb!%bookmark! \textit{name path}  & Bookmark path. \\
-  \verb!%bookmark -l!  & List bookmarks. \\
-  \verb!%dhist! & Display the history of directories visited. \\
-  \verb!%cd! \textit{bookmark}  & cd to the bookmark. \\
-  \verb!%cd -!\textit{number} & cd to the numbered directory. \\
+  \verb!%bookmark! \textit{name} & Bookmark current working dir.\\
+  \verb!%bookmark! \textit{name path}  & Bookmark path.\\
+  \verb!%bookmark -l!  & List bookmarks.\\
+  \verb!%dhist! & List history of directories visited.\\
+  \verb!%cd! \textit{bookmark}  & cd to the bookmark.\\
+  \verb!%cd -!\textit{number} & cd to the numbered directory.\\
 \end{tabular}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Shell commands}
 
-\settowidth{\MyLen}{1234567890123456789}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-
   \verb/!ls/ & Run the system \texttt{ls} command.\\
   \verb/!ls -l/ & Run the \texttt{ls -l} command.\\
   \verb/patt = "*.py"/ & Store a pattern in a Python variable.\\
@@ -348,10 +346,12 @@ Execute commands 1 to 3: \verb/exec In[1:4]/.
 \settowidth{\MyLen}{123456789012}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-
-  \verb/Out.keys()/ & Command numbers with assocated output.\\
+  \verb!_! & Stores previous output.\\
+  \verb!__! & Next previous.\\
+  \verb!___! & Next-next previous.\\
+  \verb!_21! & Output from line 21. \\
+  \verb/Out.keys()/ & Command numbers with associated output.\\
   \verb/Out[130]/ & Display output of the command 130.\\
-
 \end{tabular}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
